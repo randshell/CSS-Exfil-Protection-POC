@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <div id="css-vulnerable1">
+            <input id="exfil_test1" value="abc" />
+            <p>TEST 1 - ;base64, fragment: </p>
+            <div id="exfil_img1" class="exfil_img margin-auto"></div>
+        </div>
+        <div id="css-vulnerable11">
+            <input id="exfil_test11" value="abc" />
+            <p>TEST 1.1 - ;base64, filename: </p>
+            <div id="exfil_img11" class="exfil_img margin-auto"></div>
+        </div>
+        <div id="css-vulnerable2">
+            <input id="exfil_test2" value="abc" />
+            <p>TEST 2 - CSS variables: </p>
+            <div id="exfil_img2" class="exfil_img margin-auto"></div>
+        </div>
+        <div id="css-vulnerable21">
+            <input id="exfil_test21" value="abc" />
+            <p>TEST 2.1 - Fallback CSS variables: </p>
+            <div id="exfil_img21" class="exfil_img margin-auto"></div>
+        </div>
+        <div id="css-vulnerable3">
+            <input id="exfil_test3" value="abc" />
+            <p>TEST 3 - CSSSupportsRule and CSSMediaRule: </p>
+            <div id="exfil_img3" class="exfil_img margin-auto"></div>
+        </div>
+        <div id="css-vulnerable31">
+            <input id="exfil_test31" value="abc" />
+            <p>TEST 31 - nested CSSMediaRule: </p>
+            <div id="exfil_img31" class="exfil_img margin-auto"></div>
+        </div>
+    </section>
+    <script>
+        const divs = document.querySelectorAll("body section > div");
+        for (i = 0; i < divs.length; i++) {
+            const div1 = divs[i].children[2];
+            if (getComputedStyle(div1).backgroundImage.indexOf("pwned") !== -1) {
+                var text = "Vulnerable!";
+            } else {
+                var text = "Safe!";
+            }
+            div1.parentElement.children[1].textContent += text;
+        }
+    </script>
+</body>
+
+</html>
