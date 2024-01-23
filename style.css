@@ -50,11 +50,23 @@
     margin: auto;
   }
   
-  body section > div {
-    display: inline-block;
-    margin: 20px;
+  section {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+  section > div {
+    flex: 1;
+    margin-bottom: 2em;
   }
   
+  section p {
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+  }
+
   input {
     display: none;
   }

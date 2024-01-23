@@ -13,6 +13,7 @@
     <h1>CSS Exfil Protection - PoC</h1>
     <noscript><br>JavaScript is required for this test.</noscript>
     <section>
+        <section></section>
         <div id="css-vulnerable1">
             <input id="exfil_test1" value="abc" />
             <p>TEST 1 - ;base64, fragment: </p>
@@ -28,8 +29,10 @@
             <p>TEST 2 - CSS variables: </p>
             <div id="exfil_img2" class="exfil_img margin-auto"></div>
         </div>
+        <section></section>
     </section>
     <section>
+        <section></section>
         <div id="css-vulnerable21">
             <input id="exfil_test21" value="abc" />
             <p>TEST 2.1 - Fallback CSS variables: </p>
@@ -45,6 +48,7 @@
             <p>TEST 31 - nested CSSMediaRule: </p>
             <div id="exfil_img31" class="exfil_img margin-auto"></div>
         </div>
+        <section></section>
     </section>
     <script>
         function checkStyle() {
