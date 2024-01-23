@@ -37,11 +37,17 @@
       }
     }
   }
+
+  h1 {
+    text-align: center;
+  }
   
   .exfil_img {
     height: 180px;
     width: 180px;
     background-size: cover;
+    display: block;
+    margin: auto;
   }
   
   body section > div {
